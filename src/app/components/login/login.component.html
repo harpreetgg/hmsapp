@@ -1,0 +1,35 @@
+<h1>Login</h1>
+<div class="container">
+  <!-- Form to show on devices greater than sm -->
+  <form #f="ngForm" class="d-none d-sm-block" autocomplete="off">
+    <div class="form-group row">
+      <label for="usrEmail" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Email Address</label>
+      <div class="col-sm-8 col-md-9 col-lg-10">
+        <input type="email" class="form-control" id="usrEmail" name="usrEmail" [(ngModel)]="usrEmail" placeholder="Email Address"
+          required autofocus>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="usrPassword" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Password</label>
+      <div class="col-sm-8 col-md-9 col-lg-10">
+        <input type="password" class="form-control" id="usrPassword" name="usrPassword" [(ngModel)]="usrPassword" placeholder="Password"
+          required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" [disabled]="f.invalid" class="btn btn-primary" (click)="onSignIn()">Sign in</button>
+      </div>
+    </div>
+  </form>
+  <!-- Form to show on small devices -->
+  <form #f="ngForm" class="form-signin d-block d-sm-none" autocomplete="off">
+    <label for="usrEmail" class="sr-only">Email Address</label>
+    <input type="email" id="usrEmail" name="usrEmail" [(ngModel)]="usrEmail" class="form-control" placeholder="Email Address"
+      required autofocus>
+    <label for="usrPassword" class="sr-only">Password</label>
+    <input type="password" id="usrPassword" name="usrPassword" [(ngModel)]="usrPassword" class="form-control" placeholder="Password"
+      required>
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="f.invalid" (click)="onSignIn()">Sign in</button>
+  </form>
+</div>

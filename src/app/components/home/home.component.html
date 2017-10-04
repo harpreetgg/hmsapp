@@ -1,0 +1,7 @@
+<div *ngIf='(user | async)'>
+  hello
+</div>
+<!-- If user not logged in -->
+<div *ngIf='!(user | async)'>
+
+</div>
