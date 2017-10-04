@@ -1,0 +1,35 @@
+<h1 class="d-none d-sm-block">Book Appointment</h1>
+<h2 class="d-block d-sm-none">Book Appointment</h2>
+<div class="container">
+  <form novalidate (ngSubmit)="onBookAppointment(f)" #f="ngForm">
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <label for="baName">Full Name</label>
+        <input type="text" class="form-control" id="baName" name="baName" [(ngModel)]="appointment.baName" placeholder="Full Name"
+          required autofocus>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="baEmail">Email Address</label>
+        <input type="email" class="form-control" id="baEmail" name="baEmail" [(ngModel)]="appointment.baEmail" placeholder="Email Address"
+          required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="baPhone">Phone Number</label>
+        <input type="text" class="form-control" id="baPhone" name="baPhone" [(ngModel)]="appointment.baPhone" placeholder="Phone Number"
+          required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="baPatient" class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input">
+          <span class="custom-control indicator"></span>
+          <span class="custom control-description">Existing One</span>
+        </label>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="baReason">Reason for Visit</label>
+        <input type="text" class="form-control" id="baReason" name="baReason" [(ngModel)]="appointment.baReason" placeholder="Reason for Visit"
+          required>
+      </div>
+    </div>
+  </form>
+</div>

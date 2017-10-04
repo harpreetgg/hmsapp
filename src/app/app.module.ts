@@ -22,6 +22,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { BookAppointmentComponent } from './components/book-appointment/book-appointment.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDJKziYmWhtnfEMczNPhLuAfgO2D-_fcXo",
@@ -36,11 +37,7 @@ firebase.initializeApp(firebaseConfig);
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'team', component: TeamComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'forgotpass', component: ForgotPasswordComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'book-appointment', component: BookAppointmentComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ]
@@ -56,7 +53,8 @@ export const routes: Routes = [
     AboutComponent,
     ContactComponent,
     ForgotPasswordComponent,
-    SignupComponent
+    SignupComponent,
+    BookAppointmentComponent
   ],
   imports: [
     BrowserModule,
