@@ -25,6 +25,18 @@ export class AppComponent {
     this.pageSwitch = 'login';
   }
 
+  gotoTeamPage() {
+    this.pageSwitch = 'teampage';
+  }
+
+  gotoAboutPage() {
+    this.pageSwitch = 'aboutpage';
+  }
+
+  gotoContactPage() {
+    this.pageSwitch = 'contactpage';
+  }
+
   gotoForgotPassword() {
     this.pageSwitch = 'forgotpass';
   }

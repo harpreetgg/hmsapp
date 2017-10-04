@@ -2,7 +2,16 @@
 <div class="container-fluid">
   <div class="row">
     <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
-      <app-sidenav></app-sidenav>
+      <div *ngIf='(user | async)'>
+        <app-sidenav></app-sidenav>
+      </div>
+      <ul *ngIf='!(user | async)' class="nav nav-pills flex-column">
+        <li class="nav-item"><a (click)="gotoLoginPage()" [ngClass]="{'active': (pageSwitch == 'login' || pageSwitch == 'forgotpass' || pageSwitch == 'signuppage')}"
+            class="nav-link pseudo-link">Home</a></li>
+        <li class="nav-item"><a (click)="gotoTeamPage()" [ngClass]="{'active': (pageSwitch == 'teampage')}" class="nav-link pseudo-link">Our Team</a></li>
+        <li class="nav-item"><a (click)="gotoAboutPage()" [ngClass]="{'active': (pageSwitch == 'aboutpage')}" class="nav-link pseudo-link">About Us</a></li>
+        <li class="nav-item"><a (click)="gotoContactPage()" [ngClass]="{'active': (pageSwitch == 'contactpage')}" class="nav-link pseudo-link">Contact Us</a></li>
+      </ul>
     </nav>
     <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
       <div *ngIf='(user | async)'>
@@ -45,6 +54,15 @@
             <button class="btn btn-outline-dark float-right" (click)="gotoLoginPage()">Back</button>
           </h2>
           <app-signup></app-signup>
+        </div>
+        <div *ngIf="(pageSwitch === 'teampage')">
+          <app-team></app-team>
+        </div>
+        <div *ngIf="(pageSwitch === 'aboutpage')">
+          <app-about></app-about>
+        </div>
+        <div *ngIf="(pageSwitch === 'contactpage')">
+          <app-contact></app-contact>
         </div>
       </div>
     </main>

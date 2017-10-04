@@ -112,3 +112,7 @@ md2-toast {
 .pseudo-link {
   cursor: pointer;
 }
+
+.nav-link.pseudo-link.active:hover {
+  color: rgba(255,255,255,0.87);
+}
