@@ -1,3 +1,14 @@
-<p>
-  appointment-timings works!
-</p>
+<h1 class="d-none d-sm-block">Appointment Time</h1>
+<h2 class="d-block d-sm-none">Appointment Time</h2>
+<ngx-loading [show]="loading"></ngx-loading>
+<div class="container">
+  <form class="row" #f="ngForm">
+    <div class="col-sm-6 col-lg-3">
+      <label for="atDate">Choose date & time:</label>
+      <input type="datetime-local" name="atDate" [(ngModel)]="atDate" id="atDate" class="form-control" required autofocus>
+    </div>
+    <div class="col-sm-6 mt-3 mt-6">
+      <button class="btn btn-outline-dark" [disabled]="f.invalid" type="submit" (click)="inputDate()">Proceed</button>
+    </div>
+  </form>
+</div>

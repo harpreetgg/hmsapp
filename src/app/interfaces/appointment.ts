@@ -5,5 +5,6 @@ export interface Appointment {
   baPhone: string;
   baPatientType: string;
   baDepartment: string;
+  baDoctor: string;
   baReason: string;
 }

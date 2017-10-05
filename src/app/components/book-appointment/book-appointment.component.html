@@ -1,6 +1,6 @@
 <h1 class="d-none d-sm-block">Book Appointment</h1>
 <h2 class="d-block d-sm-none">Book Appointment</h2>
-<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<ngx-loading [show]="loading"></ngx-loading>
 <div class="container">
   <div *ngIf="!pageSwitch">
     <button class="btn btn-secondary my-1" (click)="pageSwitch == gotoExistingForm()">Existing Patient</button>
@@ -51,7 +51,7 @@
           <label for="baDoctor" class="sr-only">Doctor</label>
           <select name="baDoctor" [(ngModel)]="appointment.baDoctor" id="baDoctor" required class="form-control">
             <option disabled selected>Doctor</option>
-            <option *ngFor="let dr of doctorsList | async" [value]="dr.drName">{{dr.drName}}</option>
+            <option *ngFor="let dr of doctorsList | async" [value]="dr.drName + '-' + dr.drAge + '-' + dr.drDeptt">{{dr.drName}}</option>
           </select>
         </div>
         <div class="col-sm-6 mt-sm-0" style="margin-top: 1rem;">
@@ -65,10 +65,8 @@
             <span class="custom-file-control"></span>
           </label>
         </div>
-        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-3" style="margin-top: 1rem;" [disabled]="nf.invalid"
-          (click)="onBookingForm()">Proceed</button>
-        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-3" style="margin-top: 1rem;" [disabled]="nf.invalid"
-          (click)="onBookingForm()">Proceed</button>
+        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-3" style="margin-top: 1rem;" [disabled]="nf.invalid" (click)="onBookingForm()">Proceed</button>
+        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-3" style="margin-top: 1rem;" [disabled]="nf.invalid" (click)="onBookingForm()">Proceed</button>
       </div>
     </form>
   </div>

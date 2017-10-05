@@ -39,6 +39,7 @@ export class BookAppointmentComponent implements OnInit {
     baPhone: '',
     baPatientType: '',
     baDepartment: '',
+    baDoctor: '',
     baReason: ''
   };
 
@@ -64,7 +65,6 @@ export class BookAppointmentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pageSwitch = 'new-form';
     this.reportAdded = false;
     this.appointmentId = firebase.database().ref('/appointments').push().key;
   }
@@ -153,6 +153,7 @@ export class BookAppointmentComponent implements OnInit {
   onBookingForm() {
     this._ad.database.ref('/appointments/' + this.appointmentId).update({
       baDeptt: this.appointment.baDepartment,
+      baDoctor: this.appointment.baDoctor,
       baEmailAddress: this.appointment.baEmail,
       baPatientAddress: this.appointment.baAddress,
       baPatientName: this.appointment.baName,

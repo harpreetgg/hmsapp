@@ -11,6 +11,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
 import { LoadingModule } from 'ngx-loading';
+import { MomentModule } from 'angular2-moment';
 
 import { MainAppService } from './services/main-app.service';
 
@@ -67,6 +68,7 @@ export const routes: Routes = [
     RouterModule.forRoot(routes),
     Md2Module,
     LoadingModule,
+    MomentModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule
