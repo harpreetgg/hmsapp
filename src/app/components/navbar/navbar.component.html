@@ -1,3 +1,13 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
   <span class="navbar-brand">{{appName}}</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavbarCollapse" aria-controls="appNavbarCollapse"
+    aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="appNavbarCollapse">
+    <ul class="navbar-nav ml-auto d-block d-sm-none">
+      <li class="nav-item"><a routerLink="home" class="nav-link pseudo-link">Home</a></li>
+      <li class="nav-item"><a routerLink="book-appointment" class="nav-link pseudo-link">Book an Appointment</a></li>
+    </ul>
+  </div>
 </nav>
