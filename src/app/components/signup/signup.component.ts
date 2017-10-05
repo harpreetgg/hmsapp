@@ -58,6 +58,19 @@ export class SignupComponent implements OnInit {
             });
             user.sendEmailVerification().then(snap => {
               this._toast.show('Please verify your Email Address.', 5000);
+              this._ad.database.ref('/notifications/').push({
+                notificationUsrUid: user.uid,
+                notificationRead: false,
+                notificationNumber: user.uid + '-' + false,
+                notificationType: 'Static',
+                notificationTitle: 'Verify Email Address',
+                notificationMessage: 'Please verify your Email Address',
+                notificationTimestamp: firebase.database.ServerValue.TIMESTAMP
+              }).then(u => {
+                return;
+              }).catch(err => {
+                console.log("Error: " + err.message);
+              });
             }).catch(err => {
               console.log("Error: " + err.message);
             })

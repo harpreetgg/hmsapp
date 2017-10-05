@@ -18,12 +18,12 @@
     <br>
   </div>
   <div *ngIf="(pageSwitch == 'new-form')">
-    <form novalidate class="container" #nf="ngForm" (ngSubmit)="onSubmitNewPatient(f)">
+    <form autocomplete="off" class="container" #nf="ngForm">
       <div class="row">
         <div class="col-sm-6 mb-3">
           <label for="baName" class="sr-only">Patient Name</label>
           <input type="text" id="baName" name="baName" [(ngModel)]="appointment.baName" placeholder="Patient Name" required autofocus
-            class="form-control">
+            class="form-control" pattern="^([a-zA-Z .]+)$">
         </div>
         <div class="col-sm-6 mb-3">
           <label for="baAddress" class="sr-only">Address</label>
@@ -31,17 +31,27 @@
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
           <label for="baPhone" class="sr-only">Phone Number</label>
-          <input type="text" id="baPhone" name="baPhone" [(ngModel)]="appointment.baPhone" placeholder="Phone Number" required class="form-control">
+          <input type="text" id="baPhone" name="baPhone" [(ngModel)]="appointment.baPhone" placeholder="Phone Number" minlength="7"
+            required class="form-control" pattern="([0-9]+\w)">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
           <label for="baEmail" class="sr-only">Email Address</label>
-          <input type="email" id="baEmail" name="baEmail" [(ngModel)]="appointment.baEmail" placeholder="Email Address" required class="form-control">
+          <input type="email" id="baEmail" name="baEmail" [(ngModel)]="appointment.baEmail" placeholder="Email Address" required class="form-control"
+            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
         </div>
         <div class="col-sm-6 col-md-4 col-lg-6 mb-3">
           <label for="baDepartment" class="sr-only">Department</label>
-          <select name="baDepartment" [(ngModel)]="appointment.baDepartment" id="baDepartment" class="form-control">
+          <select name="baDepartment" [(ngModel)]="appointment.baDepartment" (change)="getDoctorList()" id="baDepartment" required
+            class="form-control">
             <option value="" disabled selected>Department</option>
             <option *ngFor="let deptt of departments | async" [value]="deptt.name">{{deptt.name}}</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <label for="baDoctor" class="sr-only">Doctor</label>
+          <select name="baDoctor" [(ngModel)]="appointment.baDoctor" id="baDoctor" required class="form-control">
+            <option disabled selected>Doctor</option>
+            <option *ngFor="let dr of doctorsList | async" [value]="dr.drName">{{dr.drName}}</option>
           </select>
         </div>
         <div class="col-sm-6">
@@ -49,13 +59,20 @@
           <input type="text" id="baReason" name="baReason" [(ngModel)]="appointment.baReason" placeholder="Reason for Visit..." required
             class="form-control">
         </div>
-        <div class="col-sm-6">
-          <label class="custom-file mt-xs-4 mb-3">
+        <div class="col-sm-6" *ngIf="!reportAdded">
+          <label class="custom-file my-sm-0" style="margin-top: 1rem;">
             <input type="file" accept="image/*,capture=camera" name="bsReport" [(ngModel)]="bsReport" (change)="saveImageReport($event)" class="custom-file-input">
             <span class="custom-file-control"></span>
           </label>
         </div>
-        <button class="btn btn-info mx-3">Book Appointment</button>
+        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-0 my-md-3" *ngIf="reportAdded" style="margin-top: 1rem;"
+          [disabled]="nf.invalid" (click)="withReport(nf)">Proceed</button>
+        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-0 my-md-3" *ngIf="!reportAdded" style="margin-top: 1rem;" [disabled]="nf.invalid"
+          (click)="withoutReport(nf)">Proceed</button>
+        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-0 my-md-3" *ngIf="reportAdded" style="margin-top: 1rem;"
+          [disabled]="nf.invalid" (click)="withReport(nf)">Proceed</button>
+        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-0 my-md-3" *ngIf="!reportAdded" style="margin-top: 1rem;"
+          [disabled]="nf.invalid" (click)="withoutReport(nf)">Proceed</button>
       </div>
     </form>
   </div>

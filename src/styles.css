@@ -169,3 +169,13 @@ md2-toast {
 .backdrop {
   border-radius: 0!important;
 }
+
+.custom-file-control:lang(en):empty::after {
+  content: 'Report (optional)...'
+}
+
+@media (min-width: 769px) {
+  .custom-file {
+    margin-top: 1rem!important;
+  }
+}
