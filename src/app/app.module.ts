@@ -10,6 +10,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
+import { LoadingModule } from 'ngx-loading';
+
 import { MainAppService } from './services/main-app.service';
 
 import { AppComponent } from './app.component';
@@ -61,6 +63,7 @@ export const routes: Routes = [
     FormsModule, ReactiveFormsModule,
     RouterModule.forRoot(routes),
     Md2Module,
+    LoadingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule

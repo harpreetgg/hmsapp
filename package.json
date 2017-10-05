@@ -28,6 +28,7 @@
     "jquery": "^3.2.1",
     "material-design-icons-webfont": "^1.0.0",
     "md2": "0.0.28",
+    "ngx-loading": "^1.0.7",
     "popper.js": "^1.12.5",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
