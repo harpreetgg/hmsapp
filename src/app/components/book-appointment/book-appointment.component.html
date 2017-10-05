@@ -65,14 +65,10 @@
             <span class="custom-file-control"></span>
           </label>
         </div>
-        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-0 my-md-3" *ngIf="reportAdded" style="margin-top: 1rem;"
-          [disabled]="nf.invalid" (click)="withReport(nf)">Proceed</button>
-        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-0 my-md-3" *ngIf="!reportAdded" style="margin-top: 1rem;" [disabled]="nf.invalid"
-          (click)="withoutReport(nf)">Proceed</button>
-        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-0 my-md-3" *ngIf="reportAdded" style="margin-top: 1rem;"
-          [disabled]="nf.invalid" (click)="withReport(nf)">Proceed</button>
-        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-0 my-md-3" *ngIf="!reportAdded" style="margin-top: 1rem;"
-          [disabled]="nf.invalid" (click)="withoutReport(nf)">Proceed</button>
+        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-0 my-md-3" style="margin-top: 1rem;"
+          [disabled]="nf.invalid" (click)="onBookingForm()">Proceed</button>
+        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-0 my-md-3" style="margin-top: 1rem;"
+          [disabled]="nf.invalid" (click)="onBookingForm()">Proceed</button>
       </div>
     </form>
   </div>

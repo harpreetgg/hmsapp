@@ -25,6 +25,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { BookAppointmentComponent } from './components/book-appointment/book-appointment.component';
+import { AppointmentTimingsComponent } from './components/appointment-timings/appointment-timings.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDJKziYmWhtnfEMczNPhLuAfgO2D-_fcXo",
@@ -40,6 +41,7 @@ firebase.initializeApp(firebaseConfig);
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'book-appointment', component: BookAppointmentComponent },
+  { path: 'appointment-timings/:id', component: AppointmentTimingsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ]
@@ -56,7 +58,8 @@ export const routes: Routes = [
     ContactComponent,
     ForgotPasswordComponent,
     SignupComponent,
-    BookAppointmentComponent
+    BookAppointmentComponent,
+    AppointmentTimingsComponent
   ],
   imports: [
     BrowserModule,

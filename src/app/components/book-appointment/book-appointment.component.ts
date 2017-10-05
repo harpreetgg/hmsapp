@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, PatternValidator } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Appointment } from '../../interfaces/appointment';
@@ -42,6 +43,7 @@ export class BookAppointmentComponent implements OnInit {
   };
 
   constructor(
+    private _router: Router,
     public _af: AngularFireAuth,
     public _ad: AngularFireDatabase,
     private _toast: Md2Toast
@@ -64,6 +66,7 @@ export class BookAppointmentComponent implements OnInit {
   ngOnInit() {
     this.pageSwitch = 'new-form';
     this.reportAdded = false;
+    this.appointmentId = firebase.database().ref('/appointments').push().key;
   }
 
   gotoSelectOptions() {
@@ -105,7 +108,6 @@ export class BookAppointmentComponent implements OnInit {
       this._toast.show('Please enter a valid Email Address.', 5000);
       return this.loading = false;
     } else if (this.validateEmail(this.appointment.baEmail) && this.validateName(this.appointment.baName)) {
-      this.appointmentId = firebase.database().ref('/appointments').push().key;
       if (!file.type.match('image.*')) {
         this._toast.clearAllToasts();
         this._toast.show('You can only upload images at the moment.', 5000);
@@ -121,13 +123,8 @@ export class BookAppointmentComponent implements OnInit {
           const fullPath = snapshot.metadata.fullPath;
           this._ad.database.ref('/appointments/' + this.appointmentId).update({
             baReport: 'true',
-            baPatientName: this.appointment.baName,
-            baPatientAddress: this.appointment.baAddress,
-            baPatientPhone: this.appointment.baPhone,
-            baEmailAddress: this.appointment.baEmail,
-            baDeptt: this.appointment.baDepartment,
-            baReason: this.appointment.baReason,
             baReportUrl: snapshot.downloadURL,
+            baComplete: false,
             timestamp: firebase.database.ServerValue.TIMESTAMP
           }).then(u => {
             this._toast.show('Report successfully uploaded.', 5000);
@@ -152,15 +149,22 @@ export class BookAppointmentComponent implements OnInit {
     });
   }
 
-  withReport(nf) {
-    this.pageSwitch('withreport-timings');
-  }
-
-  withoutReport(nf) {
-    this._ad.list('appointments').push({
+  onBookingForm() {
+    this._ad.database.ref('/appointments/' + this.appointmentId).update({
       baDeptt: this.appointment.baDepartment,
-      bsEmailAddress: this.appointment.baEmail
-    })
+      baEmailAddress: this.appointment.baEmail,
+      baPatientAddress: this.appointment.baAddress,
+      baPatientName: this.appointment.baName,
+      baPatientPhone: this.appointment.baPhone,
+      baReason: this.appointment.baReason,
+      baComplete: false,
+      baReport: this.reportAdded,
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    }).then(u => {
+      this._toast.clearAllToasts();
+      this._toast.show('Successfully submitted.', 5000);
+      this._router.navigate(['/appointment-timings', this.appointmentId]);
+    });
   }
 
 }
