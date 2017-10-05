@@ -54,7 +54,7 @@
             <option *ngFor="let dr of doctorsList | async" [value]="dr.drName">{{dr.drName}}</option>
           </select>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 mt-sm-0" style="margin-top: 1rem;">
           <label for="baReason" class="sr-only">Reason for Visit</label>
           <input type="text" id="baReason" name="baReason" [(ngModel)]="appointment.baReason" placeholder="Reason for Visit..." required
             class="form-control">
@@ -65,10 +65,10 @@
             <span class="custom-file-control"></span>
           </label>
         </div>
-        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-0 my-md-3" style="margin-top: 1rem;"
-          [disabled]="nf.invalid" (click)="onBookingForm()">Proceed</button>
-        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-0 my-md-3" style="margin-top: 1rem;"
-          [disabled]="nf.invalid" (click)="onBookingForm()">Proceed</button>
+        <button class="btn btn-info btn-none d-none d-sm-block mx-3 my-sm-3" style="margin-top: 1rem;" [disabled]="nf.invalid"
+          (click)="onBookingForm()">Proceed</button>
+        <button class="btn btn-info btn-block d-block d-sm-none mx-3 my-sm-3" style="margin-top: 1rem;" [disabled]="nf.invalid"
+          (click)="onBookingForm()">Proceed</button>
       </div>
     </form>
   </div>
