@@ -68,11 +68,10 @@ export class AppointmentTimingsComponent implements OnInit {
     const pgetMinutes = presentDate.getMinutes(); // get minute
     const pgetDay = presentDate.getDay(); // get day
 
-    if((getMonth == pgetMonth && getYears == pgetYears) || (getMonth*1 === (pgetMonth*1 + 1) && getYears == pgetYears)) {
-      if(getDate <= pgetDate && getMonth == pgetMonth) {
-        console.log('OK');
-      }
-      if(getHours < res[0] || getHours > res0) {
+    if ((getMonth == pgetMonth && getYears == pgetYears) || (getMonth * 1 === (pgetMonth * 1 + 1) && getYears == pgetYears)) {
+      if (getDate <= pgetDate && getMonth == pgetMonth && getYears == pgetYears && (getHours < pgetHours || (getHours == pgetHours && getMinutes < pgetMinutes))) {
+        return this._toast.show('You are trying to peep to past. Sorry!', 7000);
+      } else if (getHours < res[0] || getHours > res0) {
         return this._toast.show('Sorry! ' + this.drName + ' remains available only from ' + res[0] + ':' + res[1] + ' for ' + this.drSittingTime + ' hours only.', 7000);
       } else if (getHours == res[0]) {
         if (getMinutes < res[1]) {
@@ -83,15 +82,19 @@ export class AppointmentTimingsComponent implements OnInit {
           return this._toast.show('Sorry! ' + this.drName + ' remains available only from ' + res[0] + ':' + res[1] + ' for ' + this.drSittingTime + ' hours only.', 7000);
         }
       }
-    } else {
-      this._toast.show('You can book an appointment for this month or next month only.', 7000);
+    } else if (!(getMonth == pgetMonth && getYears == pgetYears) || (getMonth * 1 === (pgetMonth * 1 + 1) && getYears == pgetYears)) {
+      return this._toast.show('You can book an appointment for this month or next month only.', 7000);
     }
 
     switch (getDay) {
       case 0:
-        this._toast.show('Sorry! No appointment for sunday.', 5000);
-        break;
+        return this._toast.show('Sorry! No appointment for sunday.', 5000);
     }
+
+
+    this._ad.database.ref('/appointments/' + this.appointmentId).update({
+      baTimeByUser: this.atDate
+    })
 
   }
 
