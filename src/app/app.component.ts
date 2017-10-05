@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import {MainAppService} from './services/main-app.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,16 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class AppComponent {
   user;
+  appName;
 
   pageSwitch;
 
   constructor(
-    public _af: AngularFireAuth
+    public _af: AngularFireAuth,
+    public _ma: MainAppService
   ) {
     this.user = this._af.authState;
+    this.appName = this._ma.getAppName();
   }
 
   ngOnInit() {

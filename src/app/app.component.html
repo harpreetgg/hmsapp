@@ -3,7 +3,7 @@
 </div>
 <nav *ngIf='!(user | async)' class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
   <span class="navbar-brand">{{appName}}</span>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavbarCollaspe" aria-controls="appNavbarCollapse"
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#appNavbarCollapse" aria-controls="appNavbarCollapse"
     aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,7 +11,7 @@
     <ul class="navbar-nav ml-auto d-block d-sm-none">
       <li class="nav-item"><a (click)="gotoLoginPage()" class="nav-link pseudo-link">Login</a></li>
       <li class="nav-item"><a (click)="gotoTeamPage()" class="nav-link pseudo-link">Our Team</a></li>
-      <li class="nav-item"><a (click)="gotoAboutPage()" class="nav-link pseudo-li">About Us</a></li>
+      <li class="nav-item"><a (click)="gotoAboutPage()" class="nav-link pseudo-link">About Us</a></li>
       <li class="nav-item"><a (click)="gotoContactPage()" class="nav-link pseudo-link">Contact Us</a></li>
     </ul>
   </div>

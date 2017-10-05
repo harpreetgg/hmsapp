@@ -125,6 +125,7 @@ export class BookAppointmentComponent implements OnInit {
             baReport: 'true',
             baReportUrl: snapshot.downloadURL,
             baComplete: false,
+            writingUid: this.usrUid,
             timestamp: firebase.database.ServerValue.TIMESTAMP
           }).then(u => {
             this._toast.show('Report successfully uploaded.', 5000);
